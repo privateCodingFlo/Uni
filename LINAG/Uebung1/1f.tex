@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Kopf- und Fußzeilen
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+
+\section*{Aufgabe 1:f}
+Entscheiden Sie, ob folgende Aussagen wahr oder falsch sind:
+\begin{enumerate}[label=(\roman*)]
+    \item Eine Inverse einer Abbildung ist gleichzeitig Rechts- und Linksinverse.
+    \item Eine Abbildung kann mehrere Linksinverse haben.
+    \item Jede bijektive Abbildung besitzt eine Inverse.
+    \item Die Inverse einer Abbildung ist immer eindeutig.
+\end{enumerate}
+
+\subsection*{Antworten mit Begründung}
+
+\begin{itemize}
+    \item[(i)] \textbf{Wahr.} Unter „Inverse“ versteht man üblicherweise die zweiseitige Inverse \(f^{-1}\), also eine Abbildung \(g\) mit \(g\circ f=\mathrm{id}_X\) und \(f\circ g=\mathrm{id}_Y\). Solch eine Inverse ist per Definition sowohl Links- als auch Rechtsinverse.
+
+    \item[(ii)] \textbf{Wahr.} Eine Abbildung \(f\colon X\to Y\) kann mehrere Linksinverse besitzen, falls \(f\) injektiv, aber nicht surjektiv ist. Für \(y\notin f(X)\) darf ein Linksinverses \(g\colon Y\to X\) die Werte beliebig wählen, ohne die Bedingung \(g\circ f=\mathrm{id}_X\) zu verletzen. \\
+        \emph{Beispiel:} \(X=\{1\}, Y=\{a,b\}\), \(f(1)=a\). Dann genügt \(g(a)=1\) und \(g(b)\) kann entweder \(1\) oder ein anderer Wert (falls vorhanden) sein — also mehrere Möglichkeiten.
+
+    \item[(iii)] \textbf{Wahr.} Ist \(f\) bijektiv, so existiert für jedes \(y\in Y\) genau ein \(x\in X\) mit \(f(x)=y\). Damit ist die (zweiseitige) Inverse \(f^{-1}\colon Y\to X\) wohldefiniert.
+
+    \item[(iv)] \textbf{Wahr.} Falls eine zweiseitige Inverse existiert, ist sie eindeutig. Angenommen \(g\) und \(h\) sind zwei Inverse von \(f\). Dann
+        \[
+            g = g\circ\mathrm{id}_Y = g\circ(f\circ h) = (g\circ f)\circ h = \mathrm{id}_X\circ h = h,
+        \]
+        also \(g=h\).
+\end{itemize}
+
+\end{document}

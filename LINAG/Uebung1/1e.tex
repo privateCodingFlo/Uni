@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Kopf- und Fußzeilen
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+
+\section*{Aufgabe 1:e}
+Seien \(X\) und \(Y\) Mengen und \(f\colon X\to Y\) und \(g\colon Y\to X\) Abbildungen. Zeigen Sie:
+\begin{enumerate}[label=(\roman*)]
+    \item Ist \(g\) Linksinverse von \(f\), d.\,h.\ \(g\circ f=\mathrm{id}_X\), so ist \(f\) injektiv.
+    \item Ist \(g\) Rechtsinverse von \(f\), d.\,h.\ \(f\circ g=\mathrm{id}_Y\), so ist \(f\) surjektiv.
+\end{enumerate}
+
+\subsection*{Beweis}
+
+\textbf{(i) $g\circ f=\mathrm{id}_X \Rightarrow f$ injektiv.}
+
+Seien \(x,x'\in X\) mit \(f(x)=f(x')\). Wenden wir \(g\) auf beide Seiten an, so erhalten wir
+\[
+    g(f(x))=g(f(x')).
+\]
+Da \(g\circ f=\mathrm{id}_X\) gilt, ist \(g(f(x))=x\) und \(g(f(x'))=x'\). Somit folgt \(x=x'\). Daher ist \(f\) injektiv.
+
+\bigskip
+
+\textbf{(ii) $f\circ g=\mathrm{id}_Y \Rightarrow f$ surjektiv.}
+
+Sei \(y\in Y\) beliebig. Setze \(x:=g(y)\in X\). Dann gilt
+\[
+    f(x)=f(g(y))=(f\circ g)(y)=\mathrm{id}_Y(y)=y.
+\]
+Also existiert für jedes \(y\in Y\) ein \(x\in X\) mit \(f(x)=y\). Daher ist \(f\) surjektiv.
+
+\bigskip
+
+\noindent Damit sind beide Aussagen gezeigt.
+
+\end{document}

@@ -1,0 +1,126 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+
+\section*{Aufgabe 1:b}
+Entscheiden Sie, ob folgende Aussagen \textbf{wahr} oder \textbf{falsch} sind, wenn $A, B, \dots$ Aussagen bezeichnen, die wahr oder falsch sein können:
+
+\subsection*{(i) $A \lor (\neg A)$}
+
+\textbf{Wahrheitstafel:}
+
+\[
+    \begin{array}{c|c|c}
+        A & \neg A & A \lor (\neg A) \\
+        \midrule
+        W & F      & W               \\
+        F & W      & W               \\
+    \end{array}
+\]
+
+\textbf{Ergebnis:} Die Aussage ist in allen Fällen \textbf{wahr}.
+$\Rightarrow$ \textbf{Tautologie.}
+
+\bigskip
+\subsection*{(ii) \(\neg B \land (A \Rightarrow B)\)}
+
+Dies ist die reine Konjunktion (ohne äußere Implikation). Erinnerung: \(A\Rightarrow B \equiv \neg A \lor B\).
+
+\textbf{Wahrheitstafel:}
+
+\[
+    \begin{array}{c|c|c|c}
+        A & B & A \Rightarrow B & \neg B \land (A \Rightarrow B) \\
+        \midrule
+        W & W & W               & F                              \\
+        W & F & F               & F                              \\
+        F & W & W               & F                              \\
+        F & F & W               & W                              \\
+    \end{array}
+\]
+
+\textbf{Ergebnis:} Die Formel ist in manchen Belegungen \textbf{wahr} (z.\,B. \(A=F,B=F\)), in anderen \textbf{falsch}.
+$\Rightarrow$ \textbf{keine Tautologie}, aber \textbf{erfüllbar} (kontingent).
+
+\bigskip
+\subsection*{(iii) Assoziativität: $A \land (B \land C) \Leftrightarrow (A \land B) \land C$}
+
+\textbf{Wahrheitstafel:}
+
+\[
+    \begin{array}{c|c|c|c|c|c}
+        A & B & C & A \land (B \land C) & (A \land B) \land C & \text{Äquivalent?} \\
+        \midrule
+        W & W & W & W                   & W                   & W                  \\
+        W & W & F & F                   & F                   & W                  \\
+        W & F & W & F                   & F                   & W                  \\
+        F & W & W & F                   & F                   & W                  \\
+        F & F & F & F                   & F                   & W                  \\
+    \end{array}
+\]
+
+\textbf{Ergebnis:} Beide Seiten sind stets gleich.
+$\Rightarrow$ \textbf{wahr (Tautologie)} — Assoziativgesetz gilt.
+
+\bigskip
+\subsection*{(iv) Korrigierte Angabe:}
+\[
+    C \lor (\neg\neg C \land A \land (B \lor C)) \;\Leftrightarrow\; \neg\neg C \land (C \lor (A \land B))
+\]
+
+\textbf{Wahrheitstafel:}
+
+\[
+    \begin{array}{c|c|c|c|c|c|c|c}
+        A                                                                                     & B & C & \neg\neg C & B\lor C & \neg\neg C\land A\land(B\lor C) & \text{links} & \text{rechts} \\
+        \midrule
+        W                                                                                     & W & W & W          & W       & W                               & W            & W             \\
+        W                                                                                     & W & F & F          & W       & F                               & F            & F             \\
+        W                                                                                     & F & W & W          & W       & W                               & W            & F             \\
+        W                                                                                     & F & F & F          & F       & F                               & F            & F             \\
+        F                                                                                     & W & W & W          & W       & F                               & W            & F             \\
+        F                                                                                     & W & F & F          & W       & F                               & F            & F             \\
+        F                                                                                     & F & W & W          & W       & F                               & W            & F             \\
+        F                                                                                     & F & F & F          & F       & F                               & F            & F             \\
+        \midrule
+        \multicolumn{7}{r}{\text{Äquivalenz (links $\Leftrightarrow$ rechts) in jeder Zeile}} & W                                                                                             \\
+    \end{array}
+\]
+
+(Darstellung: für jede Belegung sind die Werte von \emph{links} und \emph{rechts} gleich; die Äquivalenz ist in allen 8 Fällen wahr.)
+
+\textbf{Ergebnis:} Beide Seiten haben in \emph{jeder} Belegung denselben Wahrheitswert.
+$\Rightarrow$ \textbf{Tautologie} (wahr).
+
+\bigskip
+\hrule
+\bigskip
+\textbf{Zusammenfassung:}
+
+\[
+    \begin{array}{l|c}
+        \text{Aussage} & \text{Wahrheitswert}     \\
+        \midrule
+        (i)            & \text{wahr (Tautologie)} \\
+        (ii)           & \text{falsch}            \\
+        (iii)          & \text{wahr (Tautologie)} \\
+        (iv)           & \text{falsch}            \\
+    \end{array}
+\]
+
+\end{document}

@@ -1,0 +1,101 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor} 
+\usepackage{enumitem} % Für die flexiblere Listenumgebung
+\usepackage{fancyhdr} % Für eine vollständige Dokumentstruktur
+
+% Optional: Setzt eine einfache Kopfzeile für ein komplettes Dokument
+\pagestyle{fancy}
+\fancyhead{} 
+\fancyfoot{} 
+\fancyhead[R]{\thepage} % Setzt die Seitenzahl rechts
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+
+\section*{Aufgabe 1:c}
+Sind eine Implikation $A \Rightarrow B$ und ihre Prämisse $A$ wahr, so folgt das Konklusion $B$ wahr ist; kann man etwas über den Wahrheitsgehalt der Prämisse $A$ aussagen, wenn Implikation und Konklusion wahr sind?
+
+\subsection*{Logische Schlussfolgerung}
+Wenn die Implikation $A \Rightarrow B$ und die Konklusion $B$ wahr sind, kann man über den Wahrheitsgehalt der Prämisse $A$ \textbf{keine eindeutige Aussage} treffen.
+
+\begin{itemize}
+    \item Die Schlussfolgerung, dass $A$ wahr sein muss, ist der \textbf{logische Fehlschluss} der Bejahung des Konsequens (Affirming the Consequent).
+    \item Die Implikation ist wahr, wenn $A$ und $B$ beide wahr sind (W $\Rightarrow$ W), aber auch, wenn $A$ falsch und $B$ wahr ist (F $\Rightarrow$ W).
+\end{itemize}
+
+\bigskip
+
+\subsection*{Analyse der Ungleichungen und Beweise}
+
+\textbf{(i) Ungleichung vom arithmetischen und geometrischen Mittel (AGM)}
+$A$ bezeichne die Aussage $\forall x, y \in \mathbb{R}: x, y > 0 \Rightarrow \frac{x+y}{2} \geq \sqrt{xy}$.
+
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{Entscheiden Sie, ob diese Aussage wahr oder falsch ist und be-
+              gründen Sie Ihre Entscheidung. Beweisen Sie!}
+
+          Die Aussage $A$ ist \textbf{wahr}.
+
+          \textbf{Beweis:}
+          Wir beweisen die Ungleichung $\frac{x+y}{2} \geq \sqrt{xy}$ durch eine Kette von \textbf{Äquivalenzen} $(\iff)$ zur trivial wahren Aussage.
+
+          Da $x, y > 0$ gelten, sind $\sqrt{x}$ und $\sqrt{y}$ reelle Zahlen.
+          \begin{align*}
+              \frac{x+y}{2}           & \geq \sqrt{xy}  & \iff \\
+              x + y                   & \geq 2\sqrt{xy} & \iff \\
+              x - 2\sqrt{xy} + y      & \geq 0          & \iff \\
+              (\sqrt{x} - \sqrt{y})^2 & \geq 0
+          \end{align*}
+
+          Da die letzte Aussage, $(\sqrt{x} - \sqrt{y})^2 \geq 0$, als Quadrat einer reellen Zahl \textbf{stets wahr} ist, und alle Schritte Äquivalenzen sind, ist die Aussage $A$ ebenfalls wahr.
+
+    \item \textbf{Analyse des Beweises:}
+          Der im Text gezeigte "Beweis" ist \textbf{richtig}.
+          \begin{itemize}
+              \item \textbf{Lokalisierung des Fehlers:} Es gibt \textbf{keinen Fehler}.
+          \end{itemize}
+\end{enumerate}
+
+\bigskip
+
+\textbf{(ii) Ungleichung $x+1 \leq 2x$}
+$A$ bezeichne die Aussage $\forall x > 0: x+1 \leq 2x$.
+
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{Entscheiden Sie, ob diese Aussage wahr oder falsch ist und begründen Sie Ihre Entscheidung. Woher das $x \geq 1$ sein muss? Unterscheiden Sie nach dem Definitionsbereich.}
+
+          Die Aussage $A$ ist \textbf{falsch} für den Definitionsbereich $\mathbf{x \in \mathbb{R}, x > 0}$.
+
+          \textbf{Herleitung der Bedingung $x \geq 1$:}
+          Wir formen die Ungleichung $x+1 \leq 2x$ elementar um:
+          \[
+              x+1 \leq 2x \quad \iff \quad 1 \leq x
+          \]
+          Die Ungleichung ist also nur für Werte $\mathbf{x \geq 1}$ erfüllt.
+
+          \textbf{Fallunterscheidung nach dem Definitionsbereich:}
+          \begin{itemize}
+              \item \textbf{Fall 1: Reelle Zahlen ($\mathbf{x \in \mathbb{R}, x > 0}$)} \\
+                    Die Aussage $A$ ist \textbf{falsch}, da sie für alle $x$ im Intervall $(0, 1)$ nicht erfüllt ist.
+
+              \item \textbf{Fall 2: Natürliche Zahlen ($\mathbf{x \in \mathbb{N}}$)} \\
+                    Da alle natürlichen Zahlen $x$ die Bedingung $x \geq 1$ erfüllen, ist die Aussage $A$ für den Definitionsbereich der natürlichen Zahlen $\mathbf{wahr}$.
+          \end{itemize}
+
+    \item \textbf{Analyse des Beweises:}
+          Der folgende "Beweis" ist \textbf{falsch}.
+          \begin{itemize}
+              \item \textbf{Lokalisierung des Fehlers:} Der Fehler liegt in der \textbf{Schlussrichtung} (logische Implikation). Der "Beweis" geht von der Behauptung ($A$) aus und leitet eine wahre Aussage ($B: 0 \leq (x-1)^2$) ab.
+
+              \item \textbf{Fehlertyp:} Die Schlussfolgerung $A \Rightarrow B$ beweist nicht $A$. Man müsste die Kette als Äquivalenzen ($\iff$) oder in umgekehrter Richtung ($B \Rightarrow A$) führen, um die Behauptung zu beweisen. Da $A$ für $x \in (0, 1)$ falsch ist, kann der Beweis auch durch Umkehrung nur für $x \geq 1$ funktionieren.
+
+              \item \textbf{Modifikation des Beweises:} Der Beweis kann \textbf{nicht modifiziert werden, um die Aussage $A$ als universell wahr zu beweisen}, da $A$ für reelle Zahlen $\mathbf{x \in (0, 1)}$ falsch ist.
+          \end{itemize}
+\end{enumerate}
+
+\end{document}

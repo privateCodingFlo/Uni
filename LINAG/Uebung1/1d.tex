@@ -1,0 +1,62 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Kopf- und Fußzeilen
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+
+\section*{Aufgabe 1:d}
+Sei \( f : X \to Y \) eine Funktion, \( A \subseteq X \) und
+\[
+    B := \{ f(a) : a \in A \} = f(A).
+\]
+Welche der folgenden Aussagen müssen dann gelten?
+
+\begin{enumerate}[label=(\roman*)]
+    \item \( \forall x \in X : (x \in A \Rightarrow f(x) \in B) \)
+    \item \( \forall x \in X : (f(x) \in B \Rightarrow x \in A) \)
+    \item \( A \subseteq f^{-1}(B) \)
+    \item \( f^{-1}(B) \subseteq A \)
+\end{enumerate}
+
+\subsection*{Lösung und Begründung}
+
+\begin{itemize}
+    \item[(i)] \textbf{Wahr.}
+        Wenn \( x \in A \) gilt, so ist \( f(x) \) per Definition ein Element von \( f(A) = B \).
+        Daher gilt \( x \in A \Rightarrow f(x) \in B \).
+
+    \item[(ii)] \textbf{Falsch.}
+        Aus \( f(x) \in B \) folgt nur, dass es ein \( a \in A \) mit \( f(a) = f(x) \) gibt.
+        Das bedeutet nicht zwingend \( x \in A \), außer \( f \) ist injektiv.
+        \[
+            \text{Beispiel: } X = \{1,2\},\; A = \{1\},\; f(1) = f(2) = 0.
+        \]
+        Dann ist \( B = \{0\} \), und \( f(2) \in B \), aber \( 2 \notin A \).
+
+    \item[(iii)] \textbf{Wahr.}
+        Es gilt \( f^{-1}(B) = \{ x \in X : f(x) \in B \} \).
+        Für alle \( a \in A \) gilt \( f(a) \in B \), also \( a \in f^{-1}(B) \).
+        Damit folgt \( A \subseteq f^{-1}(B) \).
+
+    \item[(iv)] \textbf{Falsch.}
+        Im obigen Gegenbeispiel ist \( f^{-1}(B) = \{1,2\} \not\subseteq A = \{1\} \).
+\end{itemize}
+
+\subsection*{Bemerkung}
+Die Aussagen (i) und (iii) sind logisch äquivalent (punktweise bzw. mengenweise formuliert).
+Die Aussagen (ii) und (iv) gelten nur, falls \( f \) injektiv ist.
+
+\end{document}
