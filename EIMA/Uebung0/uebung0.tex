@@ -1,0 +1,219 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{xcolor}
+
+% --- KOPFZEILE HINZUFÜGEN (Ihr Name) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{} % Löscht alte Kopfzeilen
+\fancyfoot{} % Löscht alte Fußzeilen
+\fancyhead[L]{EIMA Übung 0: Florian Kainrath} % ERSETZEN SIE DIES MIT IHREM NAMEN
+\fancyhead[R]{\thepage} % Seitenzahl rechts
+\renewcommand{\headrulewidth}{0.4pt}
+% ---------------------------------------
+
+\begin{document}
+
+\section*{Aufgabe 1}
+
+\begin{table}[h!]
+	\centering
+	\caption{
+		Wahrheitstabelle zur Tautologie
+		$\smash{\mbox{$\neg (A \land B) \Leftrightarrow \neg A \lor \neg B$}}$
+		und
+		$\smash{\mbox{$\neg (A \lor B) \Leftrightarrow \neg A \land \neg B$}}$
+	}
+	\label{tab:wahrheitstabelle}
+
+	\renewcommand{\arraystretch}{1.2}
+	\begin{tabular}{|c|c||c|c||c|c|c|c||c|c|}
+		\hline
+		$A$ & $B$ & $A \land B$ & $\neg (A \land B)$ & $\neg A$ & $\neg B$ & $\neg A \lor \neg B$ & $A \lor B$ & $\neg (A \lor B)$ & $\neg A \land \neg B$ \\
+		\hline\hline
+		w   & w   & w           & f                  & f        & f        & f                    & w          & f                 & f                     \\
+		\hline
+		w   & f   & f           & w                  & f        & w        & w                    & w          & f                 & f                     \\
+		\hline
+		f   & w   & f           & w                  & w        & f        & w                    & w          & f                 & f                     \\
+		\hline
+		f   & f   & f           & w                  & w        & w        & w                    & f          & w                 & w                     \\
+		\hline
+	\end{tabular}
+\end{table}
+\section*{Aufgabe 4}
+
+Beweisen Sie mittels vollständiger Induktion, dass
+\[
+	\sum_{k=1}^{n} k^2 = 1^2 + 2^2 + \dots + n^2 = \frac{n(n+1)(2n+1)}{6}
+	\quad \text{für alle } n \in \mathbb{N}.
+\]
+
+\subsection*{Beweis durch vollständige Induktion}
+
+\textbf{Induktionsanfang:} Für \( n = 1 \) gilt:
+
+\[
+	\sum_{k=1}^{1} k^2 = 1^2 = 1
+	\quad \text{und} \quad
+	\frac{1 \cdot (1 + 1) \cdot (2 \cdot 1 + 1)}{6} = \frac{1 \cdot 2 \cdot 3}{6} = 1
+\]
+
+\(\Rightarrow\) Aussage stimmt für \( n = 1 \).
+
+\bigskip
+
+\textbf{Induktionsvoraussetzung:} Sei die Aussage wahr für ein festes, aber beliebiges \( n \in \mathbb{N} \), also:
+
+\[
+	\sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}
+\]
+
+\textbf{Induktionsschritt:} Zeige die Aussage für \( n+1 \):
+
+\begin{align*}
+	\sum_{k=1}^{n+1} k^2
+	 & = \left( \sum_{k=1}^{n} k^2 \right) + (n+1)^2                         \\
+	 & = \frac{n(n+1)(2n+1)}{6} + (n+1)^2                                    \\
+	 & = \frac{n(n+1)(2n+1) + 6(n+1)^2}{6}                                   \\
+	 & = \frac{(n+1)\left[n(2n+1) + 6(n+1)\right]}{6}                        \\
+	 & = \frac{(n+1)\left[2n^2 + n + 6n + 6\right]}{6}                       \\
+	 & = \frac{(n+1)(2n^2 + 7n + 6)}{6}                                      \\
+	 & \quad \textit{(Nebenrechnung: } (n+2)(2n+3) = 2n^2 + 7n + 6\textit{)} \\
+	 & = \frac{(n+1)(n+2)(2n+3)}{6}
+\end{align*}
+
+\(\Rightarrow\) Aussage stimmt auch für \( n = 1 \).
+
+\bigskip
+
+\textbf{Schluss:} Nach dem Prinzip der vollständigen Induktion gilt:
+
+\[
+	\sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6} \quad \text{für alle } n \in \mathbb{N}.
+\]
+
+\section*{Aufgabe 5}
+
+Beweisen Sie mittels vollständiger Induktion, dass
+\[
+	4n < 2^n \quad \text{für alle } n \in \mathbb{N} \text{ mit } n \geq 5 \text{ gilt.}
+\]
+
+
+\subsection*{Beweis durch vollständige Induktion}
+
+\textbf{I. Induktionsanfang ($n=5$):}
+Da die Aussage nur für $n \geq 5$ gelten soll, wählen wir den kleinsten Wert, $n_0 = 5$.
+\[
+	4n < 2^n
+\]
+\[
+	4 * 5 < 2^5
+\]
+\[
+	20 < 32
+\]
+Da $20 < 32$, ist die Aussage $4 \cdot 5 < 2^5$ wahr.
+\(\Rightarrow\) Aussage stimmt für \( n = 5 \).
+
+\bigskip
+
+\textbf{II. Induktionsvoraussetzung (IV):}
+Sei die Aussage wahr für ein festes, aber beliebiges \( n \in \mathbb{N} \) mit $n \geq 5$:
+\[
+	4n < 2^n
+\]
+
+\textbf{III. Induktionsschritt (IS):}
+Zeige die Aussage für \( n+1 \), d.h., es muss gezeigt werden: $\mathbf{4(n+1) < 2^{n+1}}$.
+
+\begin{align*}
+	4(n+1)      & = 4n + 4                                                          \\
+	4n + 4      & < 2^n + 4                                                         \\
+	2^n  +4     & <  2^n*2               \text{ (nach IV: } 4n < 2^n)               \\
+	4n  +4      & \leq 2^n+4 <  2^n*2                                               \\
+	\\
+	\text{Beweis: }                                                                 \\
+	2^n+4       & > 2^n*2                                                           \\
+	2^n+4       & > 2^{n+1}                                                         \\
+	2^n-2^{n+1} & > 4              \text{ (umgeformt, sodass 4 kleiner sein muss) } \\
+	2^n*(2-1)   & > 4                                                               \\
+	2^n*1       & > 4 => n = 3                                                      \\
+\end{align*}
+
+woraus folgt:
+\(\Rightarrow\) Aussage $A(n+1)$ stimmt, wenn n \(\geq \) 5.
+
+\bigskip
+
+\textbf{Schluss:}
+Nach dem Prinzip der vollständigen Induktion gilt die Aussage:
+\[
+	4n < 2^n \quad \text{für alle } n \in \mathbb{N} \text{ mit } n \geq 5.
+\]
+
+\section*{Aufgabe 6}
+
+Beweisen Sie mittels vollständiger Induktion, dass für jedes $n \in \mathbb{N}$ mit $n \geq 12$ geeignete $a, b \in \mathbb{N}_0$ gibt, so dass
+\[
+	n = 4a + 5b \quad \text{gilt.}
+\]
+
+\subsection*{Beweis durch vollständige Induktion}
+
+Dieser Beweis erfordert die starke Form der Induktion, da wir im Induktionsschritt die Behauptung für eine Zahl $n-k$ benötigen, wobei $k > 1$. Alternativ können wir mehrere Induktionsanfänge verwenden.
+
+\textbf{I. Induktionsanfang (IA):} Wir zeigen die Aussage für die ersten vier Werte $n=12, 13, 14, 15$.
+\begin{itemize}
+	\item \textbf{$n=12$:} $12 = 4 \cdot 3 + 5 \cdot 0 \quad (\text{mit } a=3, b=0)$
+	\item \textbf{$n=13$:} $13 = 4 \cdot 2 + 5 \cdot 1 \quad (\text{mit } a=2, b=1)$
+	\item \textbf{$n=14$:} $14 = 4 \cdot 1 + 5 \cdot 2 \quad (\text{mit } a=1, b=2)$
+	\item \textbf{$n=15$:} $15 = 4 \cdot 0 + 5 \cdot 3 \quad (\text{mit } a=0, b=3)$
+\end{itemize}
+\(\Rightarrow\) Die Aussage gilt für $n=12, 13, 14, 15$.
+
+\bigskip
+
+\textbf{II. Induktionsvoraussetzung (IV):}
+Sei $n \geq 15$ beliebig. Die Aussage sei wahr für alle $k \in \{12, 13, \dots, n\}$, d.h., jede Zahl $k$ kann als $k = 4a' + 5b'$ mit $a', b' \in \mathbb{N}_0$ dargestellt werden.
+
+\bigskip
+
+\textbf{III. Induktionsschritt (IS):}
+Wir zeigen die Aussage für $n+1$. Es muss gezeigt werden, dass $n+1 = 4a + 5b$ dargestellt werden kann.
+
+Da $n \geq 15$ ist, ist die Zahl $n+1-4 = n-3$ Element der Menge $\{12, 13, \dots, n\}$.
+Daher können wir die Induktionsvoraussetzung auf die Zahl $n-3$ anwenden:
+\[
+	n-3 = 4a' + 5b' \quad \text{für geeignete } a', b' \in \mathbb{N}_0 \quad \text{(nach IV)}
+\]
+
+Nun addieren wir 4 auf beiden Seiten der Gleichung:
+\begin{align*}
+	n+1 & = (n-3) + 4       \\
+	    & = (4a' + 5b') + 4 \\
+	    & = 4a' + 4 + 5b'   \\
+	    & = 4(a' + 1) + 5b'
+\end{align*}
+
+Setzen wir $a = a' + 1$ und $b = b'$, so haben wir die Darstellung
+\[
+	n+1 = 4a + 5b
+\]
+Da $a' \geq 0$ ist, ist auch $a = a' + 1 \geq 1$, und da $b' \geq 0$ ist, ist $b \geq 0$. Somit sind $a, b \in \mathbb{N}_0$.
+
+\(\Rightarrow\) Aussage stimmt für \( n+1 \).
+
+\bigskip
+
+\textbf{Schluss:}
+Nach dem Prinzip der vollständigen Induktion gilt, dass für jedes $n \in \mathbb{N}$ mit $n \geq 12$ geeignete $a, b \in \mathbb{N}_0$ gibt, so dass $n = 4a + 5b$ gilt.
+
+\end{document}
