@@ -217,7 +217,6 @@ def ableitung_koeffizienten(a: list[float]) -> list[float]:
     indizes = range(1, len(a))
 
     # 2. Anwendung der Ableitungsregel (i * a_i) mithilfe einer List-Comprehension
-    # Die List-Comprehension ist die "schleifenfreie" Lösung.
     ableitungs_koeffizienten = [
         i * a[i]
         for i in indizes
@@ -249,8 +248,6 @@ print(f"Koeffizienten der Ableitung (f'(x)): {resultat2}")
 # ========================
 #       Aufgabe 6
 # ========================
-
-
 def wuerfelsumme(n: int) -> int:
     """
     Simuliert das Würfeln mit n Würfeln (ohne Schleife).
