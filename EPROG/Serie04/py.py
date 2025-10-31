@@ -286,10 +286,10 @@ def zaehle_haeufigkeiten_rekursiv(daten: list, haeufigkeiten_dict: dict):
 # Simulation und Berechnung (Ohne Schleife)
 # ANZAHL_SIMULATIONEN = 1000 # 1k nicht möglich aufgrund von stack overflow
 ANZAHL_SIMULATIONEN = 500
-ergebnisse_1000 = [wuerfelsumme(2) for _ in range(ANZAHL_SIMULATIONEN)]
+ergebnisse = [wuerfelsumme(2) for _ in range(ANZAHL_SIMULATIONEN)]
 
 # Rekursive Zählung
-haeufigkeiten = zaehle_haeufigkeiten_rekursiv(ergebnisse_1000, {})
+haeufigkeiten = zaehle_haeufigkeiten_rekursiv(ergebnisse, {})
 
 # Häufigstes Ergebnis finden mit max() und Generator-Ausdruck
 haeufigstes_ergebnis = max(haeufigkeiten)
