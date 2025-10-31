@@ -5,7 +5,9 @@ from random import randint
 #       Aufgabe 1
 # ========================
 
-#A: list[list[float]] => man gibt den Datentypen des Inputs als 2D matrix vor, welche nur Floats beinhalten darf
+# A: list[list[float]] => man gibt den Datentypen des Inputs als 2D matrix vor, welche nur Floats beinhalten darf
+
+
 def matrix_kennwerte_ohne_schleifen(A: list[list[float]]):
     # 1. Zeilensummennorm: ||A||_inf = max_i(sum_j |a_ij|)
     # Berechnung: Liste der Zeilensummen der Beträge
@@ -262,13 +264,19 @@ def zaehle_haeufigkeiten_rekursiv(daten: list, haeufigkeiten_dict: dict):
     """
     Zählt die Häufigkeiten der Ergebnisse in der Liste rekursiv (ersetzt die for-Schleife).
     """
+    # daten[1:] bei einer Länge von 1 liefert [] und darauf springt not daten an beim nöchsten rekursiven Aufruf
     if not daten:
         return haeufigkeiten_dict
 
+    # Zählen was als erstes gewürfelt wurde
     ergebnis = daten[0]
+    # restliche Daten (ohne erstes Element nehmen für den nächsten Aufruf)
     restliche_daten = daten[1:]
 
     # Dictionary aktualisieren
+    # haeufigkeiten_dict.get(ergebnis, 0) => Die Anzahl des Gewürfelten Ergebnisses holen, oder falls es nicht im dictonary
+    #                                        inkludiert ist => nimm 0.
+    # haeufigkeiten_dict[ergebnis] = fügt das Würfelergebnis automatisch selbst hinzu, falls es noch nicht im dictonary ist
     haeufigkeiten_dict[ergebnis] = haeufigkeiten_dict.get(ergebnis, 0) + 1
 
     # Rekursiver Aufruf
