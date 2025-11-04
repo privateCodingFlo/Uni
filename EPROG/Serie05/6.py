@@ -64,6 +64,14 @@ folge2, schritte2 = collatz(n2, m2)
 print(f"\nn={n2}, m={m2}: Folge: {folge2}")
 print(f"Schritte bis 1 (k): {schritte2}")  # Erwartet: None
 
+
+# Beispiel 2.5: n=27. Die Folge ist sehr lang.
+# m=112 wäre groß genug.
+n2, m2 = 27, 1112
+folge2, schritte2 = collatz(n2, m2)
+print(f"\nn={n2}, m={m2}: Folge: {folge2}")
+print(f"Schritte bis 1 (k): {schritte2}")  # Erwartet: None
+
 # Beispiel 3: n=1. Folge: 1. Schritte k=0.
 n3, m3 = 1, 5
 folge3, schritte3 = collatz(n3, m3)
