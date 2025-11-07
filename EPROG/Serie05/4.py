@@ -34,4 +34,4 @@ def knacken():
 
 
 # Führe die Brute-Force-Attacke aus
-gefundener_code = knacken()
+knacken()
