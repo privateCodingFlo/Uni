@@ -10,7 +10,7 @@ letters = {
 
 # Das umgekehrte Dictionary (Position zu Buchstabe)
 numbers_to_letters = {v: k for k, v in letters.items()}
-ALPHABET_SIZE = 26
+ALPHABET_SIZE = len(letters)
 
 
 def encrypt(m):

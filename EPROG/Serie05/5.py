@@ -29,15 +29,11 @@ def check_win(position):
                 return f"{player} gewinnt"
 
         # 3. Hauptdiagonale prüfen (von oben links nach unten rechts)
-        if (position[0][0] == player and
-            position[1][1] == player and
-                position[2][2] == player):
+        if (position[0][0] == player and position[1][1] == player and position[2][2] == player):
             return f"{player} gewinnt"
 
         # 4. Nebendiagonale prüfen (von oben rechts nach unten links)
-        if (position[0][2] == player and
-            position[1][1] == player and
-                position[2][0] == player):
+        if (position[0][2] == player and position[1][1] == player and position[2][0] == player):
             return f"{player} gewinnt"
 
     # Wenn nach allen Prüfungen kein Gewinner gefunden wurde
@@ -63,8 +59,16 @@ position_o_win_diag = [
     ["X", "O", "O"]   # O gewinnt in der Hauptdiagonale
 ]
 
+# X gewinnt, weil es zuerst überprüft wird (angenommen, solche Fälle sind eigentlich ausgeschlossen von der Angabe)
+position_edge_case = [
+    ["O", "O", "O"],
+    ["X", "X", "X"],
+    ["X", "O", "O"]
+]
+
 
 print("--- Testergebnisse Aufgabe 5 ---")
 print(f"Beispielposition: {check_win(position_example)}")
 print(f"X-Gewinn (Zeile): {check_win(position_x_win)}")
 print(f"O-Gewinn (Diagonale): {check_win(position_o_win_diag)}")
+print(f"Edge case: {check_win(position_edge_case)}")
