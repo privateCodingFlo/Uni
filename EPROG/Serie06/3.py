@@ -57,5 +57,6 @@ def alpha(p):  # p nimmt bei alpha(10) den Wert 10 an
         # i ist die lokale Schleifenvariable
         x += i  # Nutzt die lokale x von alpha.
 
+
 # Globale Operation: Startet die Ausführung
 alpha(10)
