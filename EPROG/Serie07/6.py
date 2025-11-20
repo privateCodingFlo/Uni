@@ -1,4 +1,6 @@
 import math
+# installieren übers Terminal über "pip install matplotlib"
+# In Linux ist vielleicht auch "sudo apt install python3-pip" notwendig
 import matplotlib.pyplot as plt
 
 # --------------------------------------------------------------------------------------------------
