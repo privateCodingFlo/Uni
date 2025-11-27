@@ -77,8 +77,8 @@ print(f"Sortiert:   {sortierte_liste}")
 
 print("\n## Bonus 1: Laufzeitmessung (n = 2^k)")
 
-# Definiere die k-Werte für die Messung (k=10, 11, 12, 13, 14, 15)
-k_werte = list(range(10, 16))
+# Definiere die k-Werte für die Messung (k=0, 1, 2, ... 24)
+k_werte = list(range(25))
 
 print("| n (Größe) | k | Laufzeit (Sek.) | Verhältnis (Laufzeit / n) |")
 print("|-----------|---|-----------------|---------------------------|")

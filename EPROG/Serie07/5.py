@@ -1,3 +1,8 @@
+#  ----- Nicht mit kopieren danke -----
+#  ----- Nicht mit kopieren danke -----
+# (Gemini Gelöst, weil ich keinen Bock mehr nach Beispiel 4 hatte)
+# ----- Nicht mit kopieren danke -----
+# ----- Nicht mit kopieren danke -----
 import math
 
 
@@ -85,7 +90,7 @@ def funktion_quadrat(x):
 
 X_punkt = 3.0       # Punkt x
 H_initial = 0.1     # Startwert h0
-EPS_toleranz = 1e-4  # Fehlerschranke epsilon
+EPS_toleranz = 1e-4  # Fehlerschranke epsilon (1 * 10^-4)
 
 ableitung_approx = diff(funktion_quadrat, X_punkt, H_initial, EPS_toleranz)
 

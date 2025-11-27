@@ -1,4 +1,7 @@
 import math
+# pip installieren übers Terminal über "py -m ensurepip --upgrade"
+# installieren übers Terminal über "pip install matplotlib"
+# In Linux ist vielleicht auch "sudo apt install python3-pip" notwendig
 import matplotlib.pyplot as plt
 
 # --------------------------------------------------------------------------------------------------
@@ -11,10 +14,18 @@ n = 10
 maze = [[0] * n for _ in range(n)]
 
 # Definiere die Wände (1 = Wand)
+# Koordinaten wo die 1 Gesetzt werden soll
 walls = [(2, 8), (0, 9), (1, 7), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (3, 2),
          (4, 2), (7, 2), (6, 2), (8, 2), (4, 7), (5, 1), (5, 2), (5, 3), (5, 4),
          (5, 5), (5, 6), (5, 7), (6, 2), (6, 6), (7, 6), (3, 5), (7, 4), (8, 4),
          (9, 4), (8, 6), (8, 7), (8, 8), (5, 0)]
+
+# Kein Weg existent
+# walls = [(2, 8), (0, 9), (1, 7), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (3, 2),
+#          (4, 2), (7, 2), (6, 2), (8, 2), (4, 7), (5, 1), (5, 2), (5, 3), (5, 4),
+#          (5, 5), (5, 6), (5, 7), (6, 2), (6, 6), (7, 6), (3, 5), (7, 4), (8, 4),
+#          (9, 4), (8, 6), (8, 7), (8, 8), (5, 0), (3, 6), (3,7)]
+
 
 # Setze die Wände im Gitter
 for (x, y) in walls:
@@ -75,6 +86,7 @@ def print_maze(maze, path=None, start=None, goal=None, dist=None):
 # --------------------------------------------------------------------------------------------------
 
 # Konstante für die Kosten eines diagonalen Schritts
+# weil Pythogaras bilden, sprich sqrt(1**2 + 1**2)
 COST_DIAGONAL = math.sqrt(2)
 
 # Definiert alle 8 möglichen Nachbarn und die zugehörigen Kosten
@@ -118,7 +130,7 @@ def find_shortest_path(maze, start, goal):
     dist[start_x][start_y] = 0.0
 
     while unvisited_nodes:
-        # 1. Finde den unbesuchten Knoten mit der kleinsten Distanz (ersetzt die Priority Queue)
+        # 1. Finde den unbesuchten Knoten mit der kleinsten Distanz
         min_dist = float('inf')
         current_node = None
 
@@ -150,10 +162,12 @@ def find_shortest_path(maze, start, goal):
 
     # 3. Pfadrekonstruktion
     path = []
+    # gehe vom Ziel aus zurück Richtung Start
     current = goal
 
     while current and current != start:
         path.append(current)
+        # Check vom momentanen die x und y Koordinate
         if pred[current[0]][current[1]] is None:  # Prüfe, ob das Ziel erreichbar war
             return None, dist
 

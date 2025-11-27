@@ -114,9 +114,6 @@ print("---")
 # Welche der beiden Implementierungen kann größere Werte von n berechnen ohne einen Fehler zu erzeugen?
 # Begründen Sie Ihre Antwort.
 
-print("\n## ❓ Vergleich und Begründung")
-print("---")
-
 # Die nicht-rekursive (iterative) Implementierung kann größere Werte von n berechnen, ohne einen Fehler zu erzeugen.
 
 # Begründung:

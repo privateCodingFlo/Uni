@@ -6,7 +6,7 @@ import copy
 def reverse_rows_reference(matrix):
     """
     Kehrt die Zeilenreihenfolge der Matrix um.
-    Die neue Matrix enthält Referenzen auf die originalen Zeilenobjekte (Flache Kopie der äußeren Liste).
+    Die neue Matrix enthält Referenzen auf die originalen Zeilenobjekte.
     Änderungen in der neuen Matrix wirken auf die alte Matrix zurück.
     """
     # [::-1] kehrt die Liste der Zeilen um. Die Zeilen selbst sind die originalen Objekte.
