@@ -6,7 +6,7 @@
 
 # Die Anzahl der Scheiben für die Demonstration.
 # WICHTIG: Für die Legende müsste N=64 sein (2^64 - 1 Züge), wir nutzen N=3 für eine schnelle Demo.
-ANZAHL_SCHEIBEN = 3
+ANZAHL_SCHEIBEN = 64
 
 # Die 3 Stäbe, dargestellt als verschachtelte Liste: [[Stab 1], [Stab 2], [Stab 3]].
 # Die Scheibengröße ist die Zahl (z.B. 1=kleinste, 3=größte).
