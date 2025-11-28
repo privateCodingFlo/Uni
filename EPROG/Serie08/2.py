@@ -13,7 +13,7 @@ def newton(f, fprime, x0, tol):
     """
     x_old = x0
 
-    max_iter = 100  # Sicherheitslimit
+    max_iter =  998 # Sicherheitslimit
     for n in range(max_iter):
         f_xn = f(x_old)
         fprime_xn = fprime(x_old)

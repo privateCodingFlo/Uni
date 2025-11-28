@@ -35,6 +35,9 @@ def sieve_of_eratosthenes(n: int) -> list[int]:
         p += 1
 
     # Zum Schluss sammeln wir alle Zahlen, für die is_prime[i] True ist.
+    print(is_prime)
+    # enumerate() loopt über alle Elemente von isPrime.
+    # Für alle Werte die true sind, wird die Zahl an primes weiter übergeben (bzw. in die Liste miteingefügt)
     primes = [i for i, is_p in enumerate(is_prime) if is_p]
     return primes
 

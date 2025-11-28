@@ -14,6 +14,7 @@ class Polynomial:
         while len(coefficients) > 1 and coefficients[-1] == 0:
             coefficients.pop()
 
+        self.diffDigit0 = 0
         self.coefficients = coefficients
         self.order = len(self.coefficients) - 1 if self.coefficients else -1
 
@@ -21,21 +22,27 @@ class Polynomial:
         """
         Gibt eine lesbare String-Repräsentation des Polynoms zurück.
         """
-        if self.order == -1:
+        if self.order == 0:
             return "0"
 
         terms = []
-        for i, a in enumerate(self.coefficients):
+        # index startet mit 0 => len()-1
+        polynomAmount = len(self.coefficients)-1
+
+        # mit absteigender Potzenz ausgeben
+        for i, a in enumerate(reversed(self.coefficients)):
             if a != 0:
                 # Formatierung für x^0, x^1 und x^i
-                if i == 0:
-                    terms.append(str(a))
-                elif i == 1:
+                if i < polynomAmount - 1:
+                    # Rückwärts zählend die Potenzen ausgeben
+                    terms.append(f"{a}x^{polynomAmount-i}")
+                elif i == polynomAmount - 1:
                     terms.append(f"{a}x")
                 else:
-                    terms.append(f"{a}x^{i}")
+                    terms.append(f"{a}")
 
         # Verbinde die Terme mit " + " und ersetze "+ -" durch "- "
+        # return "Beweis, dass der String hier bestimmt wird."
         return " + ".join(terms).replace("+ -", "- ")
 
     def eval(self, x):
@@ -107,7 +114,7 @@ class Polynomial:
             return None  # Keine reellen Nullstellen
 
         # Wurzel der Diskriminante
-        sqrt_D = discriminant**0.5
+        sqrt_D = discriminant**(1/2)
 
         if discriminant == 0:
             x_1 = -p / 2
@@ -119,7 +126,7 @@ class Polynomial:
 
         return (x_1, x_2)
 
-    # @staticmethod = Funktion kann über <Klassen-Namen>.<Funktions-Namen>() aufgerufen werden und es muss nicht 
+    # @staticmethod = Funktion kann über <Klassen-Namen>.<Funktions-Namen>() aufgerufen werden und es muss nicht
     # extra ein Objekt angelegt werden (sprich keine Variable mit der Klasse)
     @staticmethod
     def add(f1, f2):
@@ -138,8 +145,102 @@ class Polynomial:
         return Polynomial(new_coeffs)
 
 
-# --- Test ---
+# ----------------------------------------------------------------------
+# TESTBEREICH 1: Standardpolynom f1(x) = 3x^2 + 2x + 1 (Grad 2)
+# ----------------------------------------------------------------------
 f1 = Polynomial([1.0, 2.0, 3.0])
-print("\n--- Test Polynom f1 ---")
+print("\n--- TESTBEREICH 1: f1(x) = 3x^2 + 2x + 1 ---")
 print(f"f1(x): {f1}")
-print(f"Integral von f1(x) von 0 bis 2: {f1.integrate(0.0, 2.0)}")
+print(f"Ordnung (Grad): {f1.order}")
+
+# f1(2) = 1 + 2*2 + 3*2^2 = 1 + 4 + 12 = 17
+print(f"f1(2.0): {f1.eval(2.0)}")
+
+# f1'(x) = 6x + 2
+f1_prime = f1.diff()
+print(f"Ableitung f1'(x): {f1_prime}")
+# f1'(2) = 6*2 + 2 = 14
+print(f"f1'(2.0): {f1_prime.eval(2.0)}")
+
+# Integral von 0 bis 2 von (3x^2 + 2x + 1) dx = [x^3 + x^2 + x]_0^2 = 14
+integral_value = f1.integrate(0.0, 2.0)
+print(f"Integral von f1(x) von 0 bis 2: {integral_value}")
+
+# ----------------------------------------------------------------------
+# TESTBEREICH 2: Konstantes Polynom f_const(x) = 5.0 (Grad 0)
+# ----------------------------------------------------------------------
+f_const = Polynomial([5.0])
+print("\n--- TESTBEREICH 2: Konstantes Polynom f_const(x) = 5.0 ---")
+print(f"f_const(x): {f_const}")
+print(f"Ordnung (Grad): {f_const.order}")
+
+# Konstantenwert sollte immer 5.0 sein
+print(f"f_const eval(100.0): {f_const.eval(100.0)}")
+
+# Ableitung f_const'(x) = 0
+f_const_prime = f_const.diff()
+print(f"Ableitung f_const'(x): {f_const_prime}")
+
+# Integral von 0 bis 3 von 5 dx = [5x]_0^3 = 15
+integral_const = f_const.integrate(0.0, 3.0)
+print(
+    f"Integral von f_const(x) von 0 bis 3: {integral_const}")
+
+# ----------------------------------------------------------------------
+# TESTBEREICH 3: Nullpolynom f_null(x) = 0 (Grad -1)
+# ----------------------------------------------------------------------
+# Eingabe: [0.0, 0.0, 0.0] -> __init__ entfernt Nullen -> Ergebnis: []
+f_null = Polynomial([0.0, 0.0, 0.0])
+print("\n--- TESTBEREICH 3: Nullpolynom f_null(x) = 0 ---")
+print(f"f_null(x): {f_null}")
+print(f"Ordnung (Grad): {f_null.order}")
+print(f"f_null eval(10.0): {f_null.eval(10.0)}")
+
+# ----------------------------------------------------------------------
+# TESTBEREICH 4: Polynom mit negativen Koeffizienten (Grad 3)
+# f_neg(x) = -0.5x^3 - 2x + 10
+# ----------------------------------------------------------------------
+f_neg = Polynomial([10.0, -2.0, 0.0, -0.5])
+print("\n--- TESTBEREICH 4: f_neg(x) = -0.5x^3 - 2x + 10 ---")
+print(f"f_neg(x): {f_neg}")
+
+# f_neg(4) = 10 - 2*4 - 0.5*4^3 = 10 - 8 - 32 = -30
+print(f"f_neg eval(4.0): {f_neg.eval(4.0)}")
+
+# f_neg'(x) = -1.5x^2 - 2.0
+f_neg_prime = f_neg.diff()
+print(f"Ableitung f_neg'(x): {f_neg_prime}")
+
+# ----------------------------------------------------------------------
+# TESTBEREICH 5: Nullstellenberechnung (zeros)
+# ----------------------------------------------------------------------
+# 5.1 Doppelte Nullstelle: f_double(x) = x^2 - 6x + 9 = (x - 3)^2. Nullstelle x=3
+f_double = Polynomial([9.0, -6.0, 1.0])
+print("\n--- TESTBEREICH 5.1: Doppelte Nullstelle (f(x) = (x-3)^2) ---")
+print(f"f_double(x): {f_double}")
+print(f"Nullstellen: {f_double.zeros()}")
+
+# 5.2 Fehlerbehandlung (Grad 3)
+print("\n--- TESTBEREICH 5.2: Fehlerbehandlung bei falschem Grad ---")
+try:
+    f_neg.zeros()  # f_neg ist Grad 3, sollte ValueError auslösen
+except ValueError as e:
+    print(f"Erfolg: Fehler ausgelöst! Meldung: {e}")
+
+# ----------------------------------------------------------------------
+# TESTBEREICH 6: Addition (add)
+# ----------------------------------------------------------------------
+# f_add1(x) = 3x^4 - 5x + 1
+f_add1 = Polynomial([1.0, -5.0, 0.0, 0.0, 3.0])
+# f_add2(x) = 2x^2 + x - 5
+f_add2 = Polynomial([-5.0, 1.0, 2.0])
+# Summe f_sum2(x) = 3x^4 + 2x^2 - 4x - 4
+f_sum2 = Polynomial.add(f_add1, f_add2)
+
+print("\n--- TESTBEREICH 6: Addition (f_add1 + f_add2) ---")
+print(f"f_add1(x): {f_add1}")
+print(f"f_add2(x): {f_add2}")
+print(f"Summe f_sum2(x): {f_sum2}")
+
+# f_sum2(1) = 3*1^4 + 2*1^2 - 4*1 - 4 = -3
+print(f"f_sum2(1.0): {f_sum2.eval(1.0)}")

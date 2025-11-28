@@ -1,31 +1,17 @@
-# Aufgabe 6: Luzifer-Rätsel
+# ======================================================================
+# AUFGABE 6: LUZIFER-RÄTSEL
+# ======================================================================
 # Zwei Zahlen x, y (2 <= x < y <= 99) werden gesucht. S = x + y < 100.
 
 # 1. Rahmenbedingungen
-MIN_VAL = 2
-MAX_VAL = 99
-MAX_SUM = 100  # Summe MUSS kleiner als 100 sein.
-
-
-def get_possible_products(P, max_x_y):
-    """
-    Findet alle möglichen Paare (x, y) mit P = x*y, wobei 2 <= x < y <= max_x_y gilt.
-    """
-    pairs = []
-    # Iteriere nur bis zur Wurzel von P, da y = P/x
-    limit = int(P**0.5)
-    for x in range(MIN_VAL, limit + 1):
-        if P % x == 0:
-            y = P // x
-            # Paare müssen die Rahmenbedingungen erfüllen: x < y und y <= max_x_y
-            if x < y and y <= max_x_y:
-                pairs.append((x, y))
-    return pairs
+MIN_VAL = 2    # Untere Grenze für x und y
+MAX_VAL = 99    # Obere Grenze für x und y
+MAX_SUM = 100   # Summe S MUSS kleiner als 100 sein.
 
 
 def count_items(items):
     """
-    Ersatz für collections.Counter: Zählt die Häufigkeit von Elementen in einer Liste.
+    Hilfsfunktion: Zählt die Häufigkeit von Elementen in einer Liste (wird für Produkte und Summen benötigt).
     """
     counts = {}
     for item in items:
@@ -37,32 +23,32 @@ def solve_lucifer_puzzle():
     """
     Führt die logischen Schritte des Luzifer-Rätsels aus.
     """
-    # 1. Initialisierung: Erstellen aller möglichen Paare (x, y)
+    # 1. Initialisierung: Erstellen aller möglichen Paare (x, y) mit 2 <= x < y <= 99 und x+y < 100
     all_pairs = []
     for x in range(MIN_VAL, MAX_VAL + 1):
         for y in range(x + 1, MAX_VAL + 1):
             if x + y < MAX_SUM:
                 all_pairs.append((x, y))
 
-    # Paare nach Produkt und Summe gruppieren
+    # Gruppierung nach Produkt P und Summe S für die Logik
     pairs_by_product = {}
     pairs_by_sum = {}
     for x, y in all_pairs:
         P = x * y
         S = x + y
+
+        # setdefault erstellt ein dictonary mit P als key und einer Liste als Value
         pairs_by_product.setdefault(P, []).append((x, y))
         pairs_by_sum.setdefault(S, []).append((x, y))
 
     # ---------------------------------------------
     # SCHRITT 1: Gauß: "Ich kenne die Zahlen nicht."
+    # Das Produkt P muss ZWEI oder mehr mögliche Paare (Faktorisierungen) haben.
     # ---------------------------------------------
-    # Produkt P muss mindestens ZWEI mögliche Paare (x, y) haben.
-
-    # Produkte, die NICHT eindeutig sind (Länge > 1)
     non_unique_products = {
         P for P, pairs in pairs_by_product.items() if len(pairs) > 1}
 
-    # G1_PAIRS: Paare, deren Produkt nicht eindeutig ist.
+    # G1_PAIRS: Die Menge der Paare (x, y), deren Produkt nicht eindeutig ist.
     g1_pairs = []
     for x, y in all_pairs:
         if x * y in non_unique_products:
@@ -70,23 +56,20 @@ def solve_lucifer_puzzle():
 
     # ---------------------------------------------
     # SCHRITT 2: Euler: "Das war mir klar."
+    # JEDE mögliche Zerlegung (x', y') der Summe S MUSS die Bedingung aus Schritt 1 erfüllen (in G1_PAIRS sein).
     # ---------------------------------------------
-    # Jedes Paar (x', y') mit Eulers Summe S MUSS in G1_PAIRS enthalten sein.
-
-    # Die Summen S, für die ALLE Zerlegungen in G1_PAIRS liegen.
     possible_sums_e2 = []
     for S, current_pairs in pairs_by_sum.items():
-        # Prüfen, ob alle Zerlegungen (x,y) von S auch in G1_PAIRS sind
         is_e2_possible = True
         for pair in current_pairs:
+            # Wenn ein Paar zu dieser Summe S nicht in G1_PAIRS ist, fällt die Summe S raus.
             if pair not in g1_pairs:
                 is_e2_possible = False
                 break
-
         if is_e2_possible:
             possible_sums_e2.append(S)
 
-    # E2_PAIRS: Paare aus G1_PAIRS, deren Summe in possible_sums_e2 liegt.
+    # E2_PAIRS: Paare aus G1_PAIRS, deren Summe in der Liste der möglichen Summen liegt.
     e2_pairs = []
     for x, y in g1_pairs:
         if x + y in possible_sums_e2:
@@ -94,17 +77,14 @@ def solve_lucifer_puzzle():
 
     # ---------------------------------------------
     # SCHRITT 3: Gauß: "Jetzt kenne ich die Zahlen."
+    # Das Produkt P MUSS in E2_PAIRS EINDEUTIG sein (nur einmal vorkommen).
     # ---------------------------------------------
-    # Das Produkt P darf jetzt nur EIN Paar in E2_PAIRS haben.
-
-    # Zähle Produkte in E2_PAIRS
     product_counts_in_e2 = count_items(x * y for x, y in e2_pairs)
 
-    # Produkte, die nur einmal in E2_PAIRS vorkommen
     unique_products_in_e2 = {
         P for P, count in product_counts_in_e2.items() if count == 1}
 
-    # G3_PAIRS: Paare aus E2_PAIRS, deren Produkt eindeutig in E2_PAIRS ist.
+    # G3_PAIRS: Die Paare aus E2_PAIRS, deren Produkt eindeutig ist.
     g3_pairs = []
     for x, y in e2_pairs:
         if x * y in unique_products_in_e2:
@@ -112,33 +92,28 @@ def solve_lucifer_puzzle():
 
     # ---------------------------------------------
     # SCHRITT 4: Euler: "Dann kenne ich sie jetzt auch."
+    # Die Summe S MUSS in G3_PAIRS EINDEUTIG sein (nur einmal vorkommen).
     # ---------------------------------------------
-    # Die Summe S darf jetzt nur EIN Paar in G3_PAIRS haben.
-
-    # Zähle Summen in G3_PAIRS
     sum_counts_in_g3 = count_items(x + y for x, y in g3_pairs)
 
-    # Summen, die nur einmal in G3_PAIRS vorkommen
     unique_sums_in_g3 = {
         S for S, count in sum_counts_in_g3.items() if count == 1}
 
-    # Das gesuchte Endpaar
+    # final_pairs: Das Endpaar muss eines der G3_PAIRS sein, dessen Summe eindeutig ist.
     final_pairs = []
     for x, y in g3_pairs:
         if x + y in unique_sums_in_g3:
             final_pairs.append((x, y))
 
+    # Die Lösung muss eindeutig sein (es ist bekannt, dass nur (4, 13) übrig bleibt)
     if len(final_pairs) == 1:
         return final_pairs[0]
     else:
-        # Die Lösung ist (4, 13)
-        print(
-            f"WARNUNG: Rätsel ist nicht eindeutig lösbar oder es wurde mehr als ein Paar gefunden: {final_pairs}")
-        # Gebe bestes Ergebnis zurück
+        print(f"WARNUNG: Mehr als ein oder kein Paar gefunden: {final_pairs}")
         return final_pairs[0] if final_pairs else (0, 0)
 
 
-# --- Ausführung und Log ---
+# --- Ausführung und Log für Rätsel ---
 result_x, result_y = solve_lucifer_puzzle()
 print("\n--- Ergebnis des Luzifer-Rätsels ---")
 print(f"Die gesuchten Zahlen sind: ({result_x}, {result_y})")
