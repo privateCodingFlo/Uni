@@ -48,7 +48,7 @@ class MyFunction:
         return f"MyFunction(domain={self.domain})"
 
 # ----------------------------------------------------------------------
-# 🧪 Testsuite
+# Testsuite
 # ----------------------------------------------------------------------
 
 # Beispiel-Funktionen für die Tests
