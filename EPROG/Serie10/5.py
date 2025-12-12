@@ -30,6 +30,7 @@ def draw_tic_tac_toe(board):
     for i in range(3):
         for j in range(3):
             symbol = board[i][j]
+            symbol = symbol.lower()
 
             # Zentrum des Feldes berechnen
             center_x = j + 0.5
