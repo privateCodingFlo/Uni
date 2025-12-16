@@ -13,10 +13,6 @@ class TextGenerator:
         # Der Wert (Value) ist eine Liste aller Zeichen, die jemals auf 'Ha' folgten, z.B. ['l', 'b', 't'].
         self.possible_chars = dict()
 
-        # c1 und c2 speichern die letzten zwei gesehenen Zeichen.
-        c1 = ""
-        c2 = ""
-
         try:
             # Datei öffnen (mit 'r' für read/lesen und utf-8 für Sonderzeichen)
             with open(filename, "r", encoding="utf-8") as f:
@@ -25,6 +21,7 @@ class TextGenerator:
 
                 # Wir brauchen mindestens zwei Zeichen, um zu starten
                 if len(content) >= 2:
+                    # c1 und c2 speichern die letzten zwei gesehenen Zeichen.
                     # Initialisierung: Die ersten beiden Zeichen des Textes nehmen
                     c1 = content[0]
                     c2 = content[1]
@@ -101,6 +98,7 @@ class TextGenerator:
                 break
 
         # textwrap.fill sorgt dafür, dass der Text schön umgebrochen wird und nicht eine riesige lange Zeile ist
+        # (ist aus dem Skript kopiert)
         return textwrap.fill(text)
 
 
@@ -119,4 +117,4 @@ if __name__ == "__main__":
 
     print("\n--- Generierter Text (basiert auf zufälligen Wahrscheinlichkeiten) ---")
     # Hier rufen wir die Methode auf, um 500 Zeichen Text zu erzeugen
-    print(my_generator.generate_text(500))
+    print(my_generator.generate_text(300))
