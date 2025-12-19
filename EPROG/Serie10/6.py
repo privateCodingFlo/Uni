@@ -1,5 +1,6 @@
 from random import choice
 import textwrap
+import os
 
 
 # Klasse zur Generierung von Text basierend auf Markov-Ketten
@@ -106,7 +107,7 @@ if __name__ == "__main__":
     # Hier prüfen wir wieder, wo die Datei liegt (im Unterordner oder direkt hier)
     import os
 
-    target_file = "EPROG/Serie10/data.txt"
+    target_file = os.path.dirname(__file__) + "/data.txt"
     if not os.path.exists(target_file):
         target_file = "data.txt"
 

@@ -1,12 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 
 def process_and_plot_data():
     # 1. Datei laden
     try:
         # Die Datei befindet sich im gleichen Verzeichnis
-        file_path = "xy1d.npy"
+        file_path = os.path.dirname(__file__) + "/xy1d.npy"
         data = np.load(file_path)
         print(f"Daten erfolgreich geladen. Form (Shape) der Rohdaten: {data.shape}")
 
