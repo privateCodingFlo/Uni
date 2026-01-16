@@ -8,7 +8,7 @@ import os
 script_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(script_dir, 'vertices.npy')
 
-# 2. Datei laden [cite: 34, 35]
+# 2. Datei laden
 try:
     vertices = np.load(file_path)
     print(f"Datei erfolgreich geladen von: {file_path}")
@@ -21,7 +21,7 @@ except FileNotFoundError:
 x_min, y_min = vertices.min(axis=0)
 x_max, y_max = vertices.max(axis=0)
 
-# 4. Monte-Carlo Methode anwenden [cite: 35, 36]
+# 4. Monte-Carlo Methode anwenden
 n_points = 50000
 points = np.random.uniform([x_min, y_min], [x_max, y_max], size=(n_points, 2))
 
@@ -29,11 +29,11 @@ points = np.random.uniform([x_min, y_min], [x_max, y_max], size=(n_points, 2))
 poly_path = Path(vertices)
 inside = poly_path.contains_points(points)
 
-# Flächenberechnung: (Fläche der Box) * (Anteil der Treffer) [cite: 35, 36]
+# Flächenberechnung: (Fläche der Box) * (Anteil der Treffer)
 box_area = (x_max - x_min) * (y_max - y_min)
 poly_area = box_area * np.sum(inside) / n_points
 
-# 5. Visualisierung mit matplotlib [cite: 37]
+# 5. Visualisierung mit matplotlib
 plt.figure(figsize=(8, 8))
 plt.scatter(points[inside, 0], points[inside, 1], s=1,
             color='blue', alpha=0.4, label='Inside')

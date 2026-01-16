@@ -2,12 +2,12 @@ import numpy as np
 
 
 def create_block_matrix(n):
-    # Tridiagonalmatrix A erstellen [cite: 30]
+    # Tridiagonalmatrix A erstellen
     A = 4 * np.eye(n) - np.eye(n, k=1) - np.eye(n, k=-1)
     # Identitätsmatrix I
     I = np.eye(n)
 
-    # Blockmatrix C aufbauen [cite: 31, 32]
+    # Blockmatrix C aufbauen
     # Wir erstellen eine Liste von Listen (Blöcken) und nutzen np.block
     blocks = [[None for _ in range(n)] for _ in range(n)]
 

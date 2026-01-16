@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 
 
 def mc_integral(f, a, b, n):
-    # Erzeuge n zufällige Punkte im Intervall [a, b] [cite: 41]
+    # Erzeuge n zufällige Punkte im Intervall [a, b]
     x = np.random.uniform(a, b, n)
-    # Mittelwert der Funktionswerte * Intervalllänge [cite: 41, 42]
+    # Mittelwert der Funktionswerte * Intervalllänge
     return (b - a) * np.mean(f(x))
 
 
@@ -20,14 +20,14 @@ n_values = [10**i for i in range(1, 6)]
 errors = []
 
 for n in n_values:
-    # Mehrere Berechnungen pro n zur Mittelung des Fehlers [cite: 44]
+    # Mehrere Berechnungen pro n zur Mittelung des Fehlers
     temp_errors = [abs(mc_integral(f, a, b, n) - true_val) for _ in range(20)]
     errors.append(np.mean(temp_errors))
 
-# Log-Log Plot des Fehlers [cite: 43]
+# Log-Log Plot des Fehlers
 plt.loglog(n_values, errors, 'o-', label='Simulation')
 plt.loglog(n_values, 1/np.sqrt(n_values), '--',
-           label='1/sqrt(n)')  # [cite: 45]
+           label='1/sqrt(n)')
 plt.xlabel('Anzahl Punkte n')
 plt.ylabel('Mittlerer Fehler')
 plt.legend()
